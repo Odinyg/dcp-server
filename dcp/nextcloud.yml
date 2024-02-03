@@ -1,0 +1,16 @@
+---
+version: "2.1"
+services:
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+    volumes:
+      - $CONFIGDIR/nextcloud/config:/config
+      - $CLONEDIR/nextcloud:/data
+    ports:
+      - $NEXTCLOUD_443:443
+    restart: unless-stopped

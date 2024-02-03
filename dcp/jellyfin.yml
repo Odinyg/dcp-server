@@ -1,0 +1,20 @@
+---
+version: "2.1"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+      - JELLYFIN_PublishedServerUrl=$JELLYFIN_URL
+    volumes:
+      - $CONFIGDIR/jellyfin/config:/config
+      - $TVDIR:/data/tvshows
+      - $MOVIEDIR:/data/movies
+    ports:
+      - $JELLYFIN_8096:8096
+      - $JELLYFIN_8920:8920 #optional
+      - $JELLYFIN_7359:7359/udp #optional
+    restart: unless-stopped

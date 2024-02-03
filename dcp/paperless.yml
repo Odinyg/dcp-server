@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  paperless-ngx:
+    image: lscr.io/linuxserver/paperless-ngx:latest
+    container_name: paperless-ngx
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+      - REDIS_URL= #optional
+      - PAPERLESS_URL=https://paperless.nygard.xyz
+    volumes:
+      - $CONFIGDIR/paperless:/config
+      - $CLONEDIR/paperless:/data
+    ports:
+      - 8000:8000
+    restart: unless-stopped

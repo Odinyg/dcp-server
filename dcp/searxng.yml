@@ -1,0 +1,8 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    ports:
+      - SEARXNG_8080:8080
+    volumes:
+      - $CONFIGDIR/searxng:/etc/searxng

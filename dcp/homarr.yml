@@ -1,0 +1,11 @@
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - $CONFIGDIR/homarr/configs:/app/data/configs
+      - $CONFIGDIR/homarr/data:/data
+      - $CONFIGDIR/homarr/icons:/app/public/icons
+    ports:
+      - $HOMARR_PORT:7575
