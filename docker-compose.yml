@@ -1,0 +1,20 @@
+include:
+  - dcp/tvrr.yml  
+  - dcp/jellyfin.yml  
+  - dcp/overseerr.yml  
+  - dcp/microbin.yml
+  - dcp/nextcloud.yml
+    #  - dcp/postgres.yml
+  - dcp/homarr.yml
+  - dcp/nginxpm.yml
+  - dcp/heimdall.yml
+  - dcp/duplicati.yml
+  - dcp/audiobookshelf.yml
+  - dcp/freshrss.yml
+  - dcp/syncthing.yml
+  - dcp/filebrowser.yml
+  - dcp/paperless.yml
+  - dcp/readarr.yml
+  - dcp/transmission.yml
+  - dcp/fullrss.yml
+  - dcp/calibre-web.yml
