@@ -12,7 +12,7 @@ services:
     volumes:
       - $CONFIGDIR/duplicati:/config
       - $CLONEDIR:/backups
-      - /home/none:/serverHomeDir
+      - ~/:/serverHomeDir
       - $CONFIGDIR:/source
     ports:
       - $DUPLICATI_PORT:8200

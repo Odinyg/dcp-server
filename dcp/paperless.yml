@@ -9,7 +9,7 @@ services:
       - PGID=$PGID
       - TZ=$TZ
       - REDIS_URL= #optional
-      - PAPERLESS_URL=https://paperless.nygard.xyz
+      - PAPERLESS_URL=https://paperless.$HOMEPAGE
     volumes:
       - $CONFIGDIR/paperless:/config
       - $CLONEDIR/paperless:/data
