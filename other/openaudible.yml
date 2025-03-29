@@ -1,0 +1,14 @@
+services:
+  openaudible:
+    image: openaudible/openaudible:latest
+    container_name: openaudible
+    volumes:
+      - $CONFIGDIR/openAudible:/config/OpenAudible
+      - $AUDIODIR/audiobooks:/audiobooks
+    ports:
+      - 3000:3000
+    environment:
+      PGID: $PGID
+      PUID: $PUID
+    restart: unless-stopped
+

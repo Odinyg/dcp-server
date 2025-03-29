@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  otrecorder:
+    image: owntracks/recorder
+    ports:
+      - 8083:8083
+    volumes:
+      - $CONFIGDIR/owntracks/config:/config
+      - $CONFIGDIR/owntracks/store:/store
+    restart: unless-stopped
+    environment:
+      - OTR_HOST = "mqtt_broker"
+      - OTR_USER = admin 
+      - OTR_PASS = admin
+
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+      - 8883:8883
+    volumes:
+      - $CONFIGDIR/mosquitto/data:/mosquitto/data
+      - $CONFIGDIR/mosquitto/logs:/mosquitto/logs
+      - $CONFIGDIR/mosquitto/conf:/mosquitto/config
+    restart: unless-stopped
+
+volumes:
+  store:
+  config:
+  mosquitto-data:
+  mosquitto-logs:
+  mosquitto-conf:

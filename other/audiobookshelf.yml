@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+      #    ports:
+      #      - 13378:80
+    volumes:
+      - $AUDIODIR/audiobooks:/audiobooks
+      - $AUDIODIR/podcasts:/podcasts
+      - $CONFIGDIR/audiobookshelf:/config
+      - $AUDIODIR/metadata:/metadata
+    restart: unless-stopped 
+    network_mode: service:tailscale
+
+  tailscale:
+        hostname: books                         # This will become the tailscale device name
+        image: tailscale/tailscale
+        volumes:
+          - ./tailscale:/var/lib/tailscale        # State data will be stored in this directory
+          - "/dev/net/tun:/dev/net/tun"           # Required for tailscale to work
+        environment:
+          #- TS_SERVE_CONFIG=/dcp/audiobookshelf.json
+          - TS_STATE_DIR=/var/lib/tailscale
+          - TS_USERSPACE=false
+        cap_add:                                    # Required for tailscale to work
+          - net_admin
+          - sys_module
+        command: tailscaled

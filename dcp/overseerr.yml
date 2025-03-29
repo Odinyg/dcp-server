@@ -1,4 +1,3 @@
-version: '3'
 services:
     jellyseerr:
        image: fallenbagel/jellyseerr:latest
@@ -7,7 +6,7 @@ services:
             - LOG_LEVEL=debug
             - TZ=$TZ
        ports:
-            - $JELLYSEERR_5055:5055
+            - 5055:5055
        volumes:
             - $CONFIGDIR/jellyseerr:/app/config
        restart: unless-stopped

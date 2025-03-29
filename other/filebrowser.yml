@@ -1,0 +1,29 @@
+services:
+  file-browser:
+    image: filebrowser/filebrowser:latest
+    container_name: file-browser
+    environment:
+      - PUID=$PUID
+      - PGID=$PGID
+      - TZ=$TZ
+    volumes:
+      - $CLONEDIR:/srv
+      - $DOWNLOADDIR:/downloaddir
+      - $CONFIGDIR/filebrowser:/config/filebrowser.db
+      - $CONFIGDIR/filebrowser:/config/settings.json
+    ports:
+      #  -  8083:80
+      - 6003:6003
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filebrowser.rule=Host(`file.heime.io`)"
+      - "traefik.http.routers.filebrowser.entrypoints=https"
+      - "traefik.http.routers.filebrowser.tls=true"
+      - "traefik.http.services.filebrowser.loadbalancer.server.port=6003"
+    networks:
+      - proxy
+
+    restart: unless-stopped
+networks:
+  proxy:
+    external: true

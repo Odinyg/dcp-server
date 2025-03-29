@@ -1,5 +1,4 @@
 ---
-version: "2.1"
 services:
   readarr:
     image: lscr.io/linuxserver/readarr:develop
@@ -11,6 +10,7 @@ services:
     volumes:
       - $CONFIGDIR/readarr:/config
       - $CLONEDIR/server/books:/books #optional
+      - $AUDIODIR/audiobooks:/audiobooks #optional
       - $DOWNLOADDIR/Readarr:/downloads
     ports:
       - 8787:8787
