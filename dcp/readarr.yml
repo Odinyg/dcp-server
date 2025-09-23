@@ -9,9 +9,8 @@ services:
       - TZ=$TZ
     volumes:
       - $CONFIGDIR/readarr:/config
-      - $CLONEDIR/server/books:/books #optional
-      - $AUDIODIR/audiobooks:/audiobooks #optional
-      - $DOWNLOADDIR/Readarr:/downloads
+      - $BOOKDIR/:/data/books #optional
+      - $DOWNLOADDIR/completed:/downloads
     ports:
       - 8787:8787
     restart: unless-stopped

@@ -1,0 +1,13 @@
+---
+services:
+  aiarr:
+    image: ghcr.io/sqrlmstr5000/aiarr:latest
+    container_name: aiarr
+    restart: unless-stopped
+    ports:
+      - "8181:8000" 
+    volumes:
+      - $CONFIGDIR/aiarr/config:/config
+      - $CONFIGDIR/aiarr/backups:/backups
+    environment:
+      - VITE_AIARR_URL=http://10.10.50.11:8181/api

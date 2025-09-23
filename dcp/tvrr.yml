@@ -13,8 +13,6 @@ services:
       - $CONFIGDIR/radarr/config:/config
       - $TVDIR:/data/tvshows
       - $MOVIEDIR:/data/movies
-      - $TVDIR2:/data/tvshows2
-      - $MOVIEDIR2:/data/movies2
       - $DOWNLOADDIR:/downloads #optional
     restart: unless-stopped
 
@@ -31,7 +29,6 @@ services:
     volumes:
       - $CONFIGDIR/sonarr/config:/config
       - $TVDIR:/data/tvshows
-      - $TVDIR2:/data/tvshows2
       - $DOWNLOADDIR:/downloads #optional
     restart: unless-stopped
 
@@ -83,34 +80,15 @@ services:
       - $DOWNLOADDIR:/nzbdownloads #optional
     restart: always
 
-  jackett:
-    image: lscr.io/linuxserver/jackett:latest
-    container_name: jackett
+  huntarr:
+    image: huntarr/huntarr:latest
+    container_name: huntarr
+    restart: always
     ports:
-      - 9117:9117
+      - "9705:9705"
+    volumes:
+      - $CONFIGDIR/huntarr/data:/config
     environment:
       - PUID=$PUID
       - PGID=$PGID
       - TZ=$TZ
-      - AUTO_UPDATE=true #optional
-      - RUN_OPTS= #optional
-    volumes:
-      - $CONFIGDIR/jacket/data:/config
-      - $CONFIGDIR/jacket/blackhole:/downloads
-    restart: unless-stopped
-  bazarr:
-    image: lscr.io/linuxserver/bazarr:latest
-    container_name: bazarr
-    environment:
-      - PUID=$PUID
-      - PGID=$PGID
-      - TZ=$TZ
-    volumes:
-      - $CONFIGDIR/bazzar/config:/config
-      - $TVDIR:/tv
-      - $TVDIR2:/data/tvshows2
-      - $MOVIEDIR:/movies
-      - $MOVIEDIR2:/data/movies2
-    ports:
-      - 6767:6767
-    restart: unless-stopped

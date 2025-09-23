@@ -2,6 +2,6 @@ include:
   - dcp/tvrr.yml  
   - dcp/lidarr.yml  
   - dcp/overseerr.yml  
-  - dcp/readarr.yml
   - dcp/transmission.yml
-  - dcp/navidrome.yml
+  - dcp/netboot.yml
+    #  - dcp/navidrome.yml
