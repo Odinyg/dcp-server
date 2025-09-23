@@ -4,4 +4,5 @@ include:
   - dcp/overseerr.yml  
   - dcp/transmission.yml
   - dcp/netboot.yml
+  - dcp/n8n.yml
     #  - dcp/navidrome.yml

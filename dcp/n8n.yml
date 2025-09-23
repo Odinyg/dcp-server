@@ -7,8 +7,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data:/home/node/.n8n
-      - ./files:/files
+      - ~/configs/n8n/data:/home/node/.n8n
+      - ~/configs/n8n/config/files:/files
     environment:
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=10.10.10.20
