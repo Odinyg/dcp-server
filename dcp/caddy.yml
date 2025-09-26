@@ -1,0 +1,14 @@
+services:
+  caddy:
+    image: docker.io/caddy
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ~/server/configs/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - $CONFIGDIR/caddy/data:/data
+      - $CONFIGDIR/caddy/config:/config
+    environment:
+      - TZ=$TZ

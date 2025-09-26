@@ -1,4 +1,5 @@
 include:
+  - dcp/caddy.yml
   - dcp/tvrr.yml  
   - dcp/lidarr.yml  
   - dcp/overseerr.yml  

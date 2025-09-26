@@ -1,0 +1,2 @@
+     jellyseer.pytt.io {
+       reverse_proxy jellyseerr:5055
