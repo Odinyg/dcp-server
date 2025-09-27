@@ -1,14 +1,27 @@
 services:
   caddy:
-    image: docker.io/caddy
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: caddy
     restart: unless-stopped
+    environment:
+      - CLOUDFLARE_EMAIL=${CF_EMAIL}
+      - CLOUDFLARE_API_TOKEN=${CF_API_TOKEN}
+      - ACME_AGREE=true
     ports:
-      - "80:80"
-      - "443:443"
+      - 2019:2019
+      - 80:80
+      - 443:443
     volumes:
       - ~/server/configs/caddy/Caddyfile:/etc/caddy/Caddyfile
       - $CONFIGDIR/caddy/data:/data
       - $CONFIGDIR/caddy/config:/config
-    environment:
+    environments:
       - TZ=$TZ
+    networks:
+      - caddy
+
+networks:
+  caddy:
+    external: true

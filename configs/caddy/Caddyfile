@@ -1,2 +1,22 @@
-     jellyseer.pytt.io, http://jellyseer.pytt.io {
-       reverse_proxy jellyseerr:5055
+{
+        admin 0.0.0.0:2019
+}
+
+*.pytt.io{
+        tls {
+                dns cloudflare {env.CF_API_TOKEN}
+                propagation_delay 2m
+                resolvers 1.1.1.1
+        }
+
+
+        @jellyseerr host jellyseerr.{env.DOMAIN}
+        handle @jellyseerr {
+                reverse_proxy https://jellyseerr:5055 {
+                    transport http {
+                            tls
+                            tls_insecure_skip_verify
+                    }
+                }
+        }
+}
